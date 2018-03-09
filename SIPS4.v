@@ -23,8 +23,12 @@ reg [4:0]flags;
 
 wire [4:0]opcode;
 assign opcode=instruction[15:11];
-reg [3:0]src1,src2,dst;
+reg [3:0]src1,src2;
+wire [3:0]dst;
+wire [3:0]flags_out;
 reg taken;
+
+ALU alu(.op(opcode[3:0]),.a(src1),.b(src2),.result(dst),.flags(flags_out));
 
 wire [3:0]in[1:0];
 reg [3:0]out[1:0];
@@ -81,7 +85,7 @@ always @(posedge clk)begin
 	ram_read_state=opcode==5'b10100^ram_read_state;
 	if(opcode==5'b10111)out[src2]=src1;
 	//ALU
-	dst=0;
+	flags=flags_out;
 	casex(opcode)
 		5'b0xxxx:register[instruction[3:1]]=dst;//ALU
 		5'b10010:register[instruction[3:1]]=PC+1;//JAL
