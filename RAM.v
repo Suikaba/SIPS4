@@ -98,9 +98,9 @@ module RAM (
 		altsyncram_component.numwords_b = 16,
 		altsyncram_component.operation_mode = "DUAL_PORT",
 		altsyncram_component.outdata_aclr_b = "NONE",
-		altsyncram_component.outdata_reg_b = "CLOCK0",
-		altsyncram_component.power_up_uninitialized = "TRUE",
-		altsyncram_component.read_during_write_mode_mixed_ports = "DONT_CARE",
+		altsyncram_component.outdata_reg_b = "UNREGISTERED",
+		altsyncram_component.power_up_uninitialized = "FALSE",
+		altsyncram_component.read_during_write_mode_mixed_ports = "OLD_DATA",
 		altsyncram_component.widthad_a = 4,
 		altsyncram_component.widthad_b = 4,
 		altsyncram_component.width_a = 4,
@@ -138,7 +138,7 @@ endmodule
 // Retrieval info: PRIVATE: INDATA_ACLR_B NUMERIC "0"
 // Retrieval info: PRIVATE: INDATA_REG_B NUMERIC "0"
 // Retrieval info: PRIVATE: INIT_FILE_LAYOUT STRING "PORT_B"
-// Retrieval info: PRIVATE: INIT_TO_SIM_X NUMERIC "1"
+// Retrieval info: PRIVATE: INIT_TO_SIM_X NUMERIC "0"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
@@ -148,9 +148,9 @@ endmodule
 // Retrieval info: PRIVATE: MIFfilename STRING ""
 // Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "2"
 // Retrieval info: PRIVATE: OUTDATA_ACLR_B NUMERIC "0"
-// Retrieval info: PRIVATE: OUTDATA_REG_B NUMERIC "1"
+// Retrieval info: PRIVATE: OUTDATA_REG_B NUMERIC "0"
 // Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
-// Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_MIXED_PORTS NUMERIC "2"
+// Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_MIXED_PORTS NUMERIC "1"
 // Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_PORT_A NUMERIC "1"
 // Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_PORT_B NUMERIC "3"
 // Retrieval info: PRIVATE: REGdata NUMERIC "1"
@@ -184,9 +184,9 @@ endmodule
 // Retrieval info: CONSTANT: NUMWORDS_B NUMERIC "16"
 // Retrieval info: CONSTANT: OPERATION_MODE STRING "DUAL_PORT"
 // Retrieval info: CONSTANT: OUTDATA_ACLR_B STRING "NONE"
-// Retrieval info: CONSTANT: OUTDATA_REG_B STRING "CLOCK0"
-// Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "TRUE"
-// Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_MIXED_PORTS STRING "DONT_CARE"
+// Retrieval info: CONSTANT: OUTDATA_REG_B STRING "UNREGISTERED"
+// Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "FALSE"
+// Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_MIXED_PORTS STRING "OLD_DATA"
 // Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "4"
 // Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "4"
 // Retrieval info: CONSTANT: WIDTH_A NUMERIC "4"

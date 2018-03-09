@@ -62,8 +62,8 @@ src1とsrc2は名前が逆のほうが使いやすい?
 
 cc
 eq/neq
-g/ge/l/le(signed)
 of/nof
+g/ge/l/le(signed)
 a/ae/b(c)/be(unsigned)
 s/ns
 always
