@@ -12,7 +12,7 @@ SIPS4(Simple Instruction set Processor for Study 4bit)
 
 レジスタ
 8GPRs
-IP
+IP (PC)
 FLAGS
 
 op(5),src1(3),src2/imm(4),dst(3),src2_mode(1)
@@ -21,12 +21,16 @@ op(5),src1(3),src2/imm(4),dst(3),src2_mode(1)
 ALU:op上位が0の時に下位(とりあえず4bit)で指定
 add,sub,and,or,xor,shift(x3),
 //cmov,mul,div,set/get flag?
+ALU flags := [N, Z, V, C] (N: Negative, Z: Zero, V: ovf, C: Carry)
+shift 演算の C は潰れたビットの or.
+shift 演算の V は元と結果のMSBのxor.
 movはadd0とnot/neg immがあればいらない
 nopもadd0があれば不要,
 逆subがあればneg不要(結局用意しなかった)
 notもxor immで十分
 この場合はmovほしい
 条件レジスタ作ってcmov実装か0レジスタで回避できる
+
 
 
 JMP
