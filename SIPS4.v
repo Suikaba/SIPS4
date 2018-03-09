@@ -19,7 +19,7 @@ wire [15:0]instruction;
 ROM rom(.address(PC),.clock(clk),.q(instruction));
 
 reg [3:0]register[0:7];
-reg [4:0]flags;
+reg [3:0]flags;
 
 wire [4:0]opcode;
 assign opcode=instruction[15:11];
@@ -33,14 +33,16 @@ ALU alu(.op(opcode[3:0]),.a(src1),.b(src2),.result(dst),.flags(flags_out));
 wire [3:0]in[1:0];
 reg [3:0]out[1:0];
 assign in[0]=slide;
-assign in[1]=~button;
+assign in[1]={2'b0,~button};
 assign LED={out[1],out[0]};
 
 reg ram_read_state;
 integer i;
 
 initial begin
+	PC=0;
 	ram_read_state=0;
+	ram_wen=0;
 	flags=0;
 	out[0]=0;
 	out[1]=0;
@@ -51,7 +53,7 @@ function branch;
 	input [3:0]flags;
 	input [3:0]cond;
 	input neg;
-	begin
+	begin:branch_scope
 		reg n,z,v,c;
 		reg taken;
 		{n,z,v,c}=flags;
@@ -85,7 +87,7 @@ always @(posedge clk)begin
 	ram_read_state=opcode==5'b10100^ram_read_state;
 	if(opcode==5'b10111)out[src2]=src1;
 	//ALU
-	flags=flags_out;
+	if(opcode[4])flags=flags_out;
 	casex(opcode)
 		5'b0xxxx:register[instruction[3:1]]=dst;//ALU
 		5'b10010:register[instruction[3:1]]=PC+1;//JAL
