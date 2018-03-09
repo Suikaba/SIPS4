@@ -33,7 +33,7 @@ ALU alu(.op(opcode[3:0]),.a(src1),.b(src2),.result(dst),.flags(flags_out));
 wire [3:0]in[1:0];
 reg [3:0]out[1:0];
 assign in[0]=slide;
-assign in[1]=button;
+assign in[1]=~button;
 assign LED={out[1],out[0]};
 
 reg ram_read_state;
