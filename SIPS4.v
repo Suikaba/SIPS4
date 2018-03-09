@@ -1,6 +1,9 @@
 module SIPS4 (
-	input wire clk // 50MHz input clock
-);
+	input wire clk, // 50MHz input clock
+	input wire [3:0]slide,
+	input wire [1:0]button,
+	output wire [7:0]LED // LED ouput
+	);
 reg [3:0]ram_wdata,ram_waddr,ram_raddr;
 wire [3:0]ram_rdata;
 reg ram_wen;
@@ -25,12 +28,19 @@ reg taken;
 
 wire [3:0]in[1:0];
 reg [3:0]out[1:0];
+assign in[0]=slide;
+assign in[1]=button;
+assign LED={out[1],out[0]};
 
 reg ram_read_state;
+integer i;
 
 initial begin
 	ram_read_state=0;
 	flags=0;
+	out[0]=0;
+	out[1]=0;
+	for(i=0;i<8;i=i+1)register[i]=0;
 end
 
 function branch;
@@ -64,11 +74,12 @@ always @(posedge clk)begin
 	end
 	else taken=0;
 	//MEM
-	ram_wdata=src2;
+	ram_wdata=src1;
 	ram_wen=opcode==5'b10101;
 	ram_raddr=src2;
 	ram_waddr=src2;
 	ram_read_state=opcode==5'b10100^ram_read_state;
+	if(opcode==5'b10111)out[src2]=src1;
 	//ALU
 	dst=0;
 	casex(opcode)
@@ -79,4 +90,5 @@ always @(posedge clk)begin
 	endcase
 	if(!ram_read_state)PC=taken?src2:PC+1;
 end
+
 endmodule
