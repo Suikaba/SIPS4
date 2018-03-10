@@ -31,7 +31,7 @@ input [3:0] op;
 input signed [3:0] a, b; // declared as signed for arithmetic rshift
 begin
     if(op == OP_ADD || op == OP_SUB) begin
-        operate[4:0] = op == OP_ADD ? a + b : a - b;
+        operate[4:0] = op == OP_ADD ? {1'b0, a} + b : {1'b0, a} - b;
         operate[VF] = (a[3] ^ operate[3])
                       && (op[0] == 0 && a[3] == b[3] || op[0] == 1 && a[3] != b[3]);
     end
