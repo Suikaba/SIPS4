@@ -76,7 +76,7 @@ always @(posedge clk)begin
 	src2=instruction[0]?instruction[7:4]:register[instruction[6:4]];
 	//JMP
 	if(opcode[4:2]==3'b100)begin
-		taken=opcode[0]^branch(flags,instruction[10:8],opcode[0]);
+		taken = branch(flags, instruction[10:8], opcode[0]);
 	end
 	else taken=0;
 	//MEM
@@ -84,7 +84,7 @@ always @(posedge clk)begin
 	ram_wen=opcode==5'b10101;
 	ram_raddr=src2;
 	ram_waddr=src2;
-	ram_read_state=opcode==5'b10100^ram_read_state;
+	ram_read_state= (opcode == 5'b10100) ^ ram_read_state;
 	if(opcode==5'b10111)out[src2]=src1;
 	//ALU
 	if(opcode[4])flags=flags_out;
