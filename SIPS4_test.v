@@ -8,13 +8,13 @@ reg  [1:0] button;
 
 parameter STEP = 1000;
 
-SIPS4 cpu(.clk(clk),.slide(slide),.button(button),.LED(LED));
+SIPS4 cpu(.clk_base(clk),.slide(slide),.button(button),.LED(LED));
 
 always #(STEP/2)clk=~clk;
 initial begin
 	clk=0;
 	slide=0;
-	button=0;
+	button=2'b11;
 end
 
 endmodule
