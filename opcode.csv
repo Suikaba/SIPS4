@@ -1,0 +1,19 @@
+opcode(bin),(hex),ASM
+00000,00,ADD
+00001,01,SUB
+00010,02,AND
+00011,03,OR
+00100,04,XOR
+
+01000,08,SLL/SLA(Shift Left Logical/Arithmetic)
+01001,09,SRL(Shift Right Logical)
+01010,0A,SRA(Shift Right Arithmetic)
+
+1000x,1x,Jcc(Jump Conditional)
+10010,12,JAL(Jump And Link)
+
+10100,14,LD(Load)
+10101,15,ST(Store)
+
+10110,16,IN
+10111,17,OUT

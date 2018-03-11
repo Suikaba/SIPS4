@@ -1,0 +1,16 @@
+neg(op LSB),cc(bin/src1),cc(name),,flags
+0,000,z/eq,zero/equal,ZF=1
+1,000,nz/ne,not zero/equal,ZF=0
+0,001,o/v,overflow,VF=1
+1,001,no/nv,not overflow,VF=0
+0,010,g,greater(signed),ZF=0&NF=VF
+0,011,ge,greater or equal(signed),NF=VF
+1,01l,l,less(signed),NF!=VF
+1,010,le,less or equal(signed),ZF=1|NF!=VF
+0,100,a,above(unsigned),CF=0&ZF=0
+0,101,nc/ae,not carry/above or equal(unsigned),CF=0
+1,101,c/b,carry/below(unsigned),CF=1
+1,100,be,below or equal,CF=1|ZF=1
+0,110,s/n,signed/negative,NF=1
+1,110,ns/nn,not signed/negative,NF=0
+0,111,(jmp),always
