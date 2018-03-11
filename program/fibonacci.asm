@@ -1,5 +1,6 @@
 //8bit fibonacci
 //init
+nop(add r0,r0,0)
 add r2,r2,1
 loop:
 out [0],r0
@@ -13,9 +14,7 @@ add r0,r2,0
 add r1,r3,0
 add r2,r4,0
 add r3,r5,0
-in [1],r6
+in r6,[1]
 add r6,r6,0
-jnz halt
+jnz this//halt
 jmp loop
-halt:
-jmp this
