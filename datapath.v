@@ -41,7 +41,7 @@ assign WriteDataReg = wr_data_reg(Inst[15:11], ALUResult, PC, RAMReadData, Src2,
 
 ALU alu(.op(ALUControl), .a(Src1), .b(Src2), .result(ALUResult), .flags(ALUFlags));
 
-RAM ram(.clock(clk), .data(WriteData), .rdaddress(Src1), .wraddress(Src2), .wren(MemWrite),
+RAM ram(.clock(clk), .data(Src1), .rdaddress(Src2), .wraddress(Src2), .wren(MemWrite),
 	    .q(RAMReadData));
 
 always @(posedge clk) begin
