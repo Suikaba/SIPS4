@@ -19,10 +19,12 @@ wire [3:0] WriteDataReg;
 wire [3:0] RAMReadData;
 wire [3:0] ALUResult;
 
+reg RAMReadState;
 reg [3:0] Port [1:0]; // LED Port. todo: separete from data path
 
 initial begin
     PC = 0;
+    RAMReadState = 0;
     Port[0] = 0;
     Port[1] = 0;
 end
@@ -43,9 +45,10 @@ RAM ram(.clock(clk), .data(WriteData), .rdaddress(Src1), .wraddress(Src2), .wren
 	    .q(RAMReadData));
 
 always @(posedge clk) begin
-    if(PortWrite) Port[Src2] <= Src1;
+    if(PortWrite) Port[Src2] = Src1;
     
-    PC <= PCSrc ? Src2 : PC + 4'h1;
+    RAMReadState = (Inst[15:11] == 5'b10100) ^ RAMReadState;
+    if(!RAMReadState) PC = PCSrc ? Src2 : PC + 4'h1;
 end
 
 // calc WriteDataReg
