@@ -55,6 +55,7 @@
 *example*
 *sopc_*
 # *.sdc # I want those timing files
+program.hex
 
 # ignore Quartus II generated folders
 db/
